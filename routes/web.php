@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ImagesUploadController;
+use App\Http\Controllers\pharmacyController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,8 +28,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('send-mail',[EmailController::class]);
+    Route::post('upload',[ImagesUploadController::class,'create'])->name('upload');
+    Route::get('prescription_view',[pharmacyController::class,'prescription_view'])->name('prescription_view');
+    Route::post('prescription_quotation',[pharmacyController::class,'prescription_quotation'])->name('prescription_quotation');
+
 });
 
 require __DIR__.'/auth.php';
 
-Route::post('send-mail',[EmailController::class]);
+
+
