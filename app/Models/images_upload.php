@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use App\Models\ImageDetail;
 
 class images_upload extends Model
 {
@@ -24,5 +25,16 @@ class images_upload extends Model
             }
         }
         return true;
+    }
+
+    public function ImageDetail()
+    {
+        return $this->hasMany(ImageDetail::class,'images_id');
+
+    }
+
+    public function user()
+    {
+        return $this->hasOne(User::class,'user_id');
     }
 }

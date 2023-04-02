@@ -12,3 +12,5 @@ window.$ = jQuery;
 import jqueryConfirmMin from 'jquery-confirm';
 window.$.confirm = jqueryConfirmMin;
 
+
+

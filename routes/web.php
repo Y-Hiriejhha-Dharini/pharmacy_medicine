@@ -3,6 +3,7 @@
 use App\Http\Controllers\ImagesUploadController;
 use App\Http\Controllers\pharmacyController;
 use App\Http\Controllers\ProfileController;
+use App\Models\images_upload;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,10 +32,9 @@ Route::middleware('auth')->group(function () {
     Route::post('send-mail',[EmailController::class]);
     Route::post('upload',[ImagesUploadController::class,'create'])->name('upload');
     Route::get('prescription_view',[pharmacyController::class,'prescription_view'])->name('prescription_view');
-    Route::post('prescription_quotation',[pharmacyController::class,'prescription_quotation'])->name('prescription_quotation');
+    Route::get('prescription_quotation/{id}',[pharmacyController::class,'prescription_quotation'])->name('prescription_quotation');
 
 });
-
 require __DIR__.'/auth.php';
 
 

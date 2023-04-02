@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Storeimages_uploadRequest;
 use App\Http\Requests\Updateimages_uploadRequest;
 use App\Models\ImageDetail;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
@@ -29,7 +30,7 @@ class ImagesUploadController extends Controller
             'note' => 'required','max:400',
             'delivery_address' => 'required','max:255',
             'delivery_time' => 'required','time',
-            'images' => 'required','image',
+            'images' => 'required','image|mimes:jpeg,jpg,png,gif,svg,jfif',
         ]);
 
         $images = images_upload::create([
@@ -39,14 +40,19 @@ class ImagesUploadController extends Controller
             'delivery_time' => $img_details['delivery_time'],
          ]);
 
-         foreach($img_details['images'] as $img)
-        {
-             ImageDetail::create([
-                'path' => $img,
-                'status' => 0,
-                'images_id' => $images['id']
-            ]);
-        }
+         if($img_details['images'])
+         {
+
+            foreach($img_details['images'] as $img)
+            {
+                $img->storeAs('public/images/',$img->getClientOriginalName());
+                 ImageDetail::create([
+                    'path' => $img->getClientOriginalName(),
+                    'status' => 0,
+                    'images_id' => $images['id']
+                ]);
+            }
+         }
 
          return redirect()->back();
     }

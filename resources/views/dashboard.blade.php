@@ -21,7 +21,7 @@ $last_upload = images_upload::findlastUpload();
                     <h2 class="font-semibold text-xl text-gray-800 text-center my-6 font-serif">
                         {{ __(strtoupper('Prescription Upload')) }}
                     </h2>
-                    <form method="POST" action="{{ route('upload') }}">
+                    <form method="POST" action="{{ route('upload') }}" enctype="multipart/form-data">
                         @csrf
                         <!-- Images -->
                         <div class="py-4">
@@ -72,7 +72,7 @@ $last_upload = images_upload::findlastUpload();
                 var files = $(this)[0].files;
                 if(files.length > limit){
                     alert("Image count can't exceed " +limit+ " amount")
-                    $('#upload_images').val('');
+                    $('#images').val('');
                     return false;
                 }else{
                     return true;
