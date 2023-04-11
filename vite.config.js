@@ -14,7 +14,8 @@ export default defineConfig({
     resolve: {
         alias: {
             '$': 'jQuery',
-            '$.confirm' :'jqueryConfirmMin'
+            // '$.confirm' :'jqueryConfirmMin',
+            'Swal' :'sweetalert2'
         },
     }
 });

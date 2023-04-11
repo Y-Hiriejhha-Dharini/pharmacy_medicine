@@ -12,9 +12,10 @@ class EmailController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function send_mail(Request $request)
     {
-        Mail::to('hirijhaa@gmail.com')->send(new EmailNotification());
+        $total = 100;
+        Mail::to('hirijhaa@gmail.com')->send(new EmailNotification($total));
 
         if(Mail::failure())
         {

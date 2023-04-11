@@ -37,6 +37,7 @@ class RegisteredUserController extends Controller
             'contact_no' => ['required','string'],
             'dob' => ['required','date'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'user_role' => ['required']
         ]);
 
         $user = User::create([
@@ -46,6 +47,7 @@ class RegisteredUserController extends Controller
             'address' => $request->address,
             'contact_no' => $request->contact_no,
             'dob' => $request->dob,
+            'user_role' => $request->user_role,
         ]);
 
         event(new Registered($user));

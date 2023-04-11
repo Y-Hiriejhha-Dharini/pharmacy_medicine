@@ -2,23 +2,26 @@
 
 namespace App\Mail;
 
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Models\PescriptionUpload;
 
 class EmailNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $total;
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($total)
     {
-        //
+        $this->total = $total;
     }
 
     /**
@@ -26,7 +29,9 @@ class EmailNotification extends Mailable
      */
     public function envelope(): Envelope
     {
+        
         return new Envelope(
+            from: new Address('hirijhaa@gmail.com', 'Dharini'),
             subject: 'Email Notification',
         );
     }
@@ -37,7 +42,10 @@ class EmailNotification extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.emails',
+            markdown: 'emails.emails',
+            with: [
+                'total' => $this->total
+            ],
         );
     }
 

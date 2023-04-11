@@ -10,7 +10,8 @@ import jQuery from 'jquery';
 window.$ = jQuery;
 
 import jqueryConfirmMin from 'jquery-confirm';
-window.$.confirm = jqueryConfirmMin;
+window.confirm = jqueryConfirmMin;
 
-
+import Swal from 'sweetalert2'
+window.Swal = Swal;
 

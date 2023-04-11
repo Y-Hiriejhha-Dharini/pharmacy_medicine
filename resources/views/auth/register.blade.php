@@ -23,6 +23,13 @@
             <x-input-error :messages="$errors->get('address')" class="mt-2" />
         </div>
 
+        <!-- User Role -->
+        <div class="mt-4">
+            <x-input-label for="user_role" :value="__('User Role')" />
+            <x-select id="user_role" class="block mt-1 w-full" name="contact_no" :value="old('contact_no')" required autocomplete="contact_no" />
+            <x-input-error :messages="$errors->get('user_role')" class="mt-2" />
+        </div>
+
          <!-- Contact No -->
          <div class="mt-4">
             <x-input-label for="contact_no" :value="__('Contact No')" />
